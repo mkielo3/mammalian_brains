@@ -1,6 +1,6 @@
 # Introduction
 
-This repository contains accompanying code for for the spatial probes presented in [Dual Computational Systems in the Development and Evolution of Mammalian Brains](https://www.biorxiv.org/content/10.1101/2024.11.19.624321v1.full.pdf). 
+This repository contains code for the spatial probes presented in [Dual Computational Systems in the Development and Evolution of Mammalian Brains](https://www.biorxiv.org/content/10.1101/2024.11.19.624321v1.full.pdf). 
 
 ## Project Structure
 ```
@@ -19,17 +19,17 @@ This repository contains accompanying code for for the spatial probes presented 
 python setup.py
 ```
 
-setup.py will download/train the necessary models. Vision and audio load pretrained PyTorch models. Olfaction, Touch, and Relational Memory train a model from scratch. Training the relational memory model takes 3-4 hours, so by default the script will simply load pre-trained weights (which are small enough to be in this repository.)
+To download/train the necessary base models. Vision and audio copy pretrained PyTorch models. Olfaction and Tourch are trained from scratch. Relational Memory can be trained in 3-4 hours, but for convenience weights are included in this repository.
 
 ```
 python main.py
 ```
 
-main.py will run the series of default experiments, saving model output to output/ alternatively, you can use the quickstart.ipynb
+Runs default experiments, with results saved to _output/_.alternatively, you can use the quickstart.ipynb
 
 
 # Credits
-The main contribution of this repository is standardizing an interface to probe inputs across modalities. This wouldn't be possible without excellent existing repositories for each modality. They are:
+The main contribution of this repository is standardizing an interface to probe inputs across modalities. This wouldn't be possible without excellent existing repositories for each modality. While the paper contains the full list of citations, there are a handful of repositories that were particularly helpful for making this code, they are:
 - [Vision Model](https://github.com/pytorch/vision/blob/main/torchvision/models/resnet.py) 👁️
 - [Olfaction Model](https://github.com/gyyang/olfaction_evolution) 👃
 - [Touch Model](https://github.com/erkil1452/touch/tree/master) 🖐️
