@@ -7,7 +7,6 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 -->
 
-[!NOTE]
 > This code is forked directly from: https://github.com/jbakermans/torch_tem with slight modifications.
 
 # Torch TEM
