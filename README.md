@@ -19,13 +19,13 @@ This repository contains code for the spatial probes presented in [Dual Computat
 python setup.py
 ```
 
-To download/train the necessary base models. Vision and audio copy pretrained PyTorch models. Olfaction and Tourch are trained from scratch. Relational Memory can be trained in 3-4 hours, but for convenience weights are included in this repository.
+To download/train the necessary base models. Vision and audio copy pretrained PyTorch models. Olfaction and Touch are trained from scratch and will benefit from having a gpu available. Relational Memory can be trained in 3-4 hours, but for convenience weights are included in this repository.
 
 ```
 python main.py
 ```
 
-Runs default experiments, with results saved to _output/_.alternatively, you can use the quickstart.ipynb
+Runs default experiments, with results saved to _output/_. Alternatively, you can use the quickstart.ipynb
 
 
 # Credits

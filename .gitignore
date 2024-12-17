@@ -2,3 +2,4 @@
 *.pkl
 *scratch*.ipynb
 *.p
+*.pyc
