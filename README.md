@@ -23,6 +23,7 @@ conda activate mammal
 conda install numpy pandas scipy scikit-learn matplotlib seaborn pillow ipykernel
 conda install pytorch torchvision torchaudio -c pytorch
 pip install altair
+pip install datasets
 conda install numba
 pip install numbasom==0.0.5
 ```
