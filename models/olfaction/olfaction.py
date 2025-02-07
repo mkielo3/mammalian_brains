@@ -30,10 +30,10 @@ class Olfaction(ModalityTrainer):
 
     def setup_som(self):
         model = FullModel(self.train_n_class, self.train_n_orn)
-        model.load_state_dict(torch.load(f"{self.project_path}/models/olfaction/saved_data/model.pt"))
+        model.load_state_dict(torch.load(f"{self.project_path}/models/olfaction/saved_data/model.pt", map_location=torch.device('cpu')))
         model.eval()
         self.model = model.to('cpu')
-        data = torch.load(f"{self.project_path}/models/olfaction/saved_data/val_dataset.pt").to('cpu')
+        data = torch.load(f"{self.project_path}/models/olfaction/saved_data/val_dataset.pt", map_location=torch.device('cpu'))
         self.norm_mu = data.mean()
         self.norm_max = torch.max(data)
         self.sample_data = data

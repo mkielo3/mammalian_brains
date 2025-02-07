@@ -60,3 +60,7 @@ def main():
                 }
 
         save_output_to_pickle(output, args.experiment_name)
+        
+
+if __name__ == "__main__":
+    main()

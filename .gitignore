@@ -2,6 +2,5 @@
 *scratch*.ipynb
 *.p
 *.pyc
-*.pyc
 *wav2vec2_model.pt
 .DS_Store
