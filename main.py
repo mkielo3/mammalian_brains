@@ -16,12 +16,15 @@ from config import Args
 
 def main():
     args = Args()
-    args.setup_models = False # Set to True if first ever time running
     args.experiment_name = "main_results"
 
     for modality in ([Olfaction(args), Vision(args), Audio(args), Touch(args), Memory(args)]):
         print ("\n", modality.modality, pd.Timestamp.now())
-        
+        if modality.modality == 'audio':
+            args.setup_models = True # always setup, bc weights too large to save in repo
+        else:
+            args.setup_models = False # otherwise setup with setup.py
+
         # 1. Train/Download Model
         modality.setup_model()
         modality.setup_som()
