@@ -4,7 +4,7 @@ from dataclasses import dataclass
 class Args:
     project_path: str = "."
     experiment_name: str = "main_results"
-    device: str = 'cpu' # barely anything here needs gpu
+    device: str = 'cuda:0' # barely anything here needs gpu
     setup_models: bool = False # flag to train/download basemodels
     train_som: bool = True # flag to train SOM
 
