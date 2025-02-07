@@ -49,6 +49,14 @@ Training Olfaction/Touch take 5-10 minutes using a 4090 GPU, with peak VRAM usag
 
 Main experiments can be run with main.py or in the quickstart notebook. Code loops over each modality and runs the necessary experiments. 
 
+The runtime of each modality is detailed belew:
+
+- Olfaction: ~5 seconds total
+- Touch: ~9 minutes total
+- Audio: ~21 minutes total
+- Vision: ~31 minutes total
+- Touch: ~10 minutes total
+
 ```
 python main.py
 ```
