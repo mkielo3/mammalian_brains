@@ -28,12 +28,26 @@ apt-get install -y ffmpeg # required for audio model
 ```
  
 
+## Base Model Setup
+
+The code will be default source models from the following:
+- Vision: Download pretrained from PyTorch
+- Audio: Download pretrained from PyTorch
+- Olfaction: Use saved weights
+- Memory: Use saved weights
+- Touch: Use saved weights
+
+To retrain olfaction and touch locally, run the below. Additionally, memory can be run by setting tem_train=True in config.py
 
 ```
-python setup.py
+python setup_base_models.py
 ```
 
-To download/train the necessary base models. Vision and audio copy pretrained PyTorch models. Olfaction and Touch are trained from scratch and will benefit from having a gpu available. Relational Memory can be trained in 3-4 hours, but for convenience weights are included in this repository.
+Training Olfaction/Touch take 5-10 minutes using a 4090 GPU, with peak VRAM usage of approximately 16gb (although this could be lowered by adjusting batch size). The memory model trains in 3-4 hours.
+
+## Running Main Experiments
+
+Main experiments can be run with main.py or in the quickstart notebook. Code loops over each modality and runs the necessary experiments. 
 
 ```
 python main.py

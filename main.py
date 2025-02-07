@@ -18,8 +18,7 @@ def main():
     args = Args()
     args.experiment_name = "main_results"
 
-    # for modality in ([Olfaction(args), Vision(args), Audio(args), Touch(args), Memory(args)]):
-	for modality in ([Touch(args), Memory(args)]):
+    for modality in ([Olfaction(args), Vision(args), Audio(args), Touch(args), Memory(args)]):
         print ("\n", modality.modality, pd.Timestamp.now())
         if modality.modality == 'audio':
             args.setup_models = True # always setup, bc weights too large to save in repo
