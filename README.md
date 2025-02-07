@@ -23,6 +23,8 @@ pip install torch torchvision torchaudio
 pip install altair datasets
 pip install numba numbasom==0.0.5
 pip install tensorboard
+
+apt-get install -y ffmpeg # You will also need ffmpeg installed for the audio model
 ```
  
 
