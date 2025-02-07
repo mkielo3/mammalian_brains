@@ -27,7 +27,8 @@ def get_headless_resnet():
 
 def get_data(n_samples):
     # Prep dataset
-    ds = load_dataset("imagenet-1k", split='validation', streaming=True).with_format("torch")
+#    ds = load_dataset("imagenet-1k", split='validation', streaming=True).with_format("torch")
+    ds = load_dataset("vaishaal/ImageNetV2", split='train').with_format("torch")
     dl = DataLoader(ds, batch_size=1, shuffle=False)
 
     transform = transforms.Compose([
@@ -41,8 +42,9 @@ def get_data(n_samples):
     for i, batch in enumerate(dl):
         if len(processed_images) >= n_samples:
             break
-
-        img = batch['image'][0]
+        
+        # img = batch['image'][0]
+        img = batch['jpeg'][0]
         if img.shape[0] == 3:
             pil_img = Image.fromarray(img.permute(1, 2, 0).numpy())
             img = transform(pil_img)

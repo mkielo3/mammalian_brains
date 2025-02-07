@@ -16,7 +16,7 @@ class Memory(ModalityTrainer):
         self.project_path = args.project_path + "/models/memory/torch_tem"
         self.reload = args.setup_models
         self.som_size = args.som_size
-        self.train_tem = args.tem_train
+        self.tem_train = args.tem_train
         self.run = 0
         self.n_rollouts = args.tem_n_rollouts
         self.batch_size = args.tem_batch_size

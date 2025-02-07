@@ -24,7 +24,8 @@ class Olfaction(ModalityTrainer):
             os.makedirs(save_dir, exist_ok=True)
             model, val_dataset = load_and_train_model(self.device, epochs=self.olfaction_epochs, n_orn=self.train_n_orn, n_class=self.train_n_class)
             torch.save(model.state_dict(), f"{save_dir}/model.pt")
-            torch.save(val_dataset[:self.olfaction_samples], f"{save_dir}/val_dataset.pt")
+            save_data = val_dataset[:self.olfaction_samples].clone().contiguous().to('cpu')
+            torch.save(save_data, f"{save_dir}/val_dataset.pt")
             return model, val_dataset
 
     def setup_som(self):

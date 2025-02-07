@@ -1,10 +1,11 @@
 from dataclasses import dataclass
+import torch
 
 @dataclass
 class Args:
     project_path: str = "."
     experiment_name: str = "main_results"
-    device: str = 'cuda:0' # barely anything here needs gpu
+    device: str = 'cuda:0' if torch.cuda.is_available() else 'cpu' # barely anything here needs gpu
     setup_models: bool = False # flag to train/download basemodels
     train_som: bool = True # flag to train SOM
 
@@ -16,7 +17,7 @@ class Args:
 
     """Vision Params"""
     # som_vision: bool = True @TODELETE
-    vision_samples: int = 100 # ImageNet samples to save, used to estimate image statistics
+    vision_samples: int = 50 # ImageNet samples to save, used to estimate image statistics
     vision_patch_size = 3 # pixel dimension of image patch, default 3x3
 
     """Touch Params"""
