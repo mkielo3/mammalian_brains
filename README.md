@@ -18,14 +18,10 @@ This repository contains code for the spatial probes presented in [Dual Computat
 Environment requirements:
 
 ```
-conda create -n mammal python=3.10
-conda activate mammal
-conda install numpy pandas scipy scikit-learn matplotlib seaborn pillow ipykernel
-conda install pytorch torchvision torchaudio -c pytorch
-pip install altair
-pip install datasets
-conda install numba
-pip install numbasom==0.0.5
+pip install numpy pandas scipy scikit-learn matplotlib seaborn pillow ipykernel
+pip install torch torchvision torchaudio
+pip install altair datasets
+pip install numba numbasom==0.0.5
 ```
  
 
