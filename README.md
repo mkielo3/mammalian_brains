@@ -22,6 +22,7 @@ pip install numpy pandas scipy scikit-learn matplotlib seaborn pillow ipykernel
 pip install torch torchvision torchaudio
 pip install altair datasets
 pip install numba numbasom==0.0.5
+pip install tensorboard
 ```
  
 
