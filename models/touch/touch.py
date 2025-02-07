@@ -34,10 +34,10 @@ class Touch(ModalityTrainer):
 
     def setup_som(self):
         model = Trainer(f"{self.project_path}/models/touch/saved_data", nFrames=self.touch_frames).model
-        model.model.load_state_dict(torch.load(f"{self.project_path}/models/touch/saved_data/model.pt"))
+        model.model.load_state_dict(torch.load(f"{self.project_path}/models/touch/saved_data/model.pt", map_location=torch.device('cpu')))
         model.model.eval()
         self.model = model.model.module.cpu() #model.model.to('cpu')
-        data = torch.load(f"{self.project_path}/models/touch/saved_data/val_dataset.pt")
+        data = torch.load(f"{self.project_path}/models/touch/saved_data/val_dataset.pt", map_location=torch.device('cpu'))
         self.sample_data = [x.squeeze().reshape(self.touch_frames, 32, 32) for x in data[2]]
         self.average_hand = torch.stack(self.sample_data).mean(dim=(0,1))
         self.norm_mu = torch.mean(self.average_hand)

@@ -97,7 +97,9 @@ class ClassificationModel(BaseModel):
 
         self.model = TouchNet(num_classes = self.numClasses, nFrames = self.sequenceLength)
         self.model = torch.nn.DataParallel(self.model)
-        self.model.cuda()
+        if torch.cuda.is_available():
+            self.model.cuda()
+
         cudnn.benchmark = True
 
         self.optimizer = torch.optim.Adam([
@@ -106,8 +108,11 @@ class ClassificationModel(BaseModel):
 
         self.optimizers = [self.optimizer]
 
-        self.criterion = nn.CrossEntropyLoss().cuda()
-
+        if torch.cuda.is_available():
+            self.criterion = nn.CrossEntropyLoss().cuda()
+        else:
+            self.criterion = nn.CrossEntropyLoss()
+        
         self.epoch = 0
         self.error = 1e20 # last error
         self.bestPrec = 1e20 # best error
