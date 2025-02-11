@@ -49,6 +49,16 @@ Training Olfaction/Touch take 5-10 minutes using a 4090 GPU, with peak VRAM usag
 
 Main experiments can be run with main.py or in the quickstart notebook. Code loops over each modality and runs the necessary experiments. 
 
+To train the presented 25x25 SOM (approx 2 hours):
+```
+python main.py
+```
+
+To train the presented 5x5 SOM (approx 10 minutes):
+```
+python main.py --fast
+```
+
 The runtime of each modality is detailed belew:
 
 - Olfaction: ~5 seconds total
