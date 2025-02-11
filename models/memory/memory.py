@@ -28,9 +28,9 @@ class Memory(ModalityTrainer):
 
     def setup_som(self):
         # load model
-        params = torch.load(f"{self.project_path}/Summaries/latest/run{self.run}/model/params_12000.pt")
+        params = torch.load(f"{self.project_path}/Summaries/latest/run{self.run}/model/params_12000.pt", weights_only=False)
         tem = hooked_model.Model(params, self.patch_size)
-        model_weights = torch.load(f"{self.project_path}/Summaries/latest/run{self.run}/model/tem_12000.pt")
+        model_weights = torch.load(f"{self.project_path}/Summaries/latest/run{self.run}/model/tem_12000.pt", weights_only=True)
         tem.load_state_dict(model_weights)
         envs = list(glob.iglob(f'{self.project_path}/Summaries/latest/run{self.run}/script/envs/*'))
 
