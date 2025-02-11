@@ -56,8 +56,7 @@ def main():
                 "samples": modality.sample_data,
                 "modality": modality.modality,
                 "args": args,
-                "activations": activation_list
-                }
+                "activations": activation_list}
 
         save_output_to_pickle(output, args.experiment_name)
         
