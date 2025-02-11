@@ -11,6 +11,7 @@ from models.audio.audio import Audio
 from models.touch.touch import Touch
 from models.memory.memory import Memory
 import argparse
+from utils import save_som_plot
 
 from config import Args
 
@@ -27,7 +28,8 @@ def main():
         args.experiment_name = "main_results_fast"
         args.som_size = (5,5)
 
-    for modality in ([Olfaction(args), Vision(args), Audio(args), Touch(args), Memory(args)]):
+    modality_list = [Olfaction(args), Vision(args), Audio(args), Touch(args), Memory(args)]
+    for modality in modality_list:
         print ("\n", modality.modality, pd.Timestamp.now())
         if modality.modality == 'audio':
             args.setup_models = True # always setup, bc weights too large to save in repo
@@ -67,8 +69,8 @@ def main():
                 "args": args,
                 "activations": activation_list}
 
-        save_output_to_pickle(output, args.experiment_name)
-
+    save_output_to_pickle(output, args.experiment_name)
+    save_som_plot(args.experiment_name, modality_list, args)
 
 if __name__ == "__main__":
     main()
