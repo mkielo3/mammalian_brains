@@ -18,7 +18,7 @@ This repository contains code for the spatial probes presented in [Dual Computat
 Environment requirements:
 
 ```
-pip install numpy pandas scipy scikit-learn matplotlib seaborn pillow ipykernel
+pip install numpy pandas scipy scikit-learn matplotlib seaborn pillow ipykernel pysal vl-convert-python
 pip install torch torchvision torchaudio
 pip install altair datasets
 pip install numba numbasom==0.0.5

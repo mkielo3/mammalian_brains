@@ -171,8 +171,8 @@ def gen_charts(data):
         assert (False)
 
     som_chart = alt.Chart(source).mark_rect(
-        width=6,
-        height=6,
+        width=6 if len(data['closest']) == 625 else 28,
+        height=6 if len(data['closest']) == 625 else 28,
         stroke=None, strokeWidth=0
     ).encode(
         x=alt.X('x:O', axis=alt.Axis(ticks=False, labels=False, title=None), scale=alt.Scale(paddingInner=0)),
@@ -184,17 +184,16 @@ def gen_charts(data):
         title=alt.TitleParams(title_str, anchor='middle', fontSize=16)
     )
 
-    # index_chart = alt.Chart(index_df).mark_rect(
-    #     width=6,
-    #     height=6,
-    # ).encode(
-    #     x=alt.X('x:O', axis=alt.Axis(ticks=False, labels=False, title=None)),
-    #     y=alt.Y('y:O', axis=alt.Axis(ticks=False, labels=False, title=None)),
-    #     color=index_color
-    # ).properties(
-    #     width=150,
-    #     height=150,
-    #     title=alt.TitleParams(title_str, anchor='middle', fontSize=16)
-    # )
-
     return som_chart, None, source
+
+
+def gen_and_save_som_charts(modality_list, args, load_pickle_output):
+	chart_list = []
+	for modality in modality_list:
+		data = load_pickle_output(args.experiment_name, modality.modality)
+		ch = gen_charts(data)
+		chart_list.append(ch[0])
+
+	alt.data_transformers.disable_max_rows()
+	concatenated = alt.hconcat(*chart_list).resolve_scale(color='independent')
+	return concatenated
