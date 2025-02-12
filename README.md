@@ -6,7 +6,7 @@ This repository contains code for the spatial probes presented in [Dual Computat
 
 # Getting Started
 
-Environment requirements:
+Tested in Python 3.10 with the following requirements:
 
 ```
 pip install -q numpy pandas scipy scikit-learn matplotlib seaborn pillow ipykernel torch torchvision torchaudio altair datasets numba numbasom==0.0.5 tensorboard pysal vl-convert-python soundfile
