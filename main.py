@@ -69,7 +69,7 @@ def main():
         save_output_to_pickle(output, args.experiment_name)
     
     save_som_plot(args.experiment_name, modality_list, args)
-    save_rf_plot(args.experiment_name, modality_list, debug=False)
+    save_rf_plot(args.experiment_name, modality_list)
 
 
 if __name__ == "__main__":
