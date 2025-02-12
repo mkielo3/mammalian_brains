@@ -19,15 +19,13 @@ Run sample experiments:
 python main.py --fast
 ```
 
-This will produce 5x5 unit SOM maps and receptive fields saved to output/ and runs in about 20 minutes on a M1 Macbook Air on CPU.
-
-Alternatively, you can run the 25x25 unit SOM displayed in the paper, which runs in about 2 hours on the same setup.
+This will produce 5x5 unit SOM maps and receptive fields saved to output/ in about 5 minutes on a M1 Macbook Air on CPU. Alternatively, you can run the full 25x25 unit SOM displayed in the paper in about 2 hours with:
 
 ```
 python main.py
 ```
 
-For convenience, we include the saved weights of the Olfaction, Somatosensation, and TEM models. If you choose, these can be retrained with:
+For convenience, saved weights are used for Olfaction, Somatosensation, and TEM models but these can be retrained with:
 
 ```
 python setup_base_models.py
