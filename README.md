@@ -2,77 +2,48 @@
 
 This repository contains code for the spatial probes presented in [Dual Computational Systems in the Development and Evolution of Mammalian Brains](https://www.biorxiv.org/content/10.1101/2024.11.19.624321v1.full.pdf). 
 
+# Getting Started
+
+Environment requirements:
+
+```
+pip install -q numpy pandas scipy scikit-learn matplotlib seaborn pillow ipykernel torch torchvision torchaudio altair datasets numba numbasom==0.0.5 tensorboard pysal vl-convert-python
+apt-get install -y ffmpeg # required for audio model
+```
+
+Run sample experiments:
+
+```
+python main.py --fast
+```
+
+This will produce 5x5 unit SOM maps and receptive fields saved to output/ and runs in about 10 minutes on a M1 Macbook Air without GPU.
+
+Alternatively, you can run the 25x25 unit SOM displayed in the paper, which runs in about 2 hours on the same setup.
+
+```
+python main.py
+```
+
+For convenience, we include the saved weights of the Olfaction, Somatosensation, and TEM models. If you choose, these can be retrained with:
+
+```
+python setup_base_models.py
+```
+
+Retraining Olfaction and Somatosensation requires 20gb of memory, and completes in ~10 minutes on an RTX 4090 GPU. The TEM model is much slower, requiring 4-6 hours. You can select which models to retrain in the config.py file. By default, TEM will not be retrained.
+
+
 ## Project Structure
 ```
 ├── analysis/         # SOM computation and descriptive statistics
-├── models/           # Model probing code (organized by modality)
+├── models/           # Model probing (organized by modality)
 ├── output/           # Saved experimental outputs
 ├── quickstart.ipynb  # Basic experiment examples
 ├── main.py           # Main experiment runner
 ├── setup.py          # Download/train base models
 └── config.py         # Hyperparameter configuration
 ```
-
-# Getting Started
-
-Environment requirements:
-
-```
-pip install numpy pandas scipy scikit-learn matplotlib seaborn pillow ipykernel pysal vl-convert-python
-pip install torch torchvision torchaudio
-pip install altair datasets
-pip install numba numbasom==0.0.5
-pip install tensorboard
-
-apt-get install -y ffmpeg # required for audio model
-```
- 
-
-## Base Model Setup
-
-The code will be default source models from the following:
-- Vision: Download pretrained from PyTorch
-- Audio: Download pretrained from PyTorch
-- Olfaction: Use saved weights
-- Memory: Use saved weights
-- Touch: Use saved weights
-
-To retrain olfaction and touch locally, run the below. Additionally, memory can be run by setting tem_train=True in config.py
-
-```
-python setup_base_models.py
-```
-
-Training Olfaction/Touch take 5-10 minutes using a 4090 GPU, with peak VRAM usage of approximately 16gb (although this could be lowered by adjusting batch size). The memory model trains in 3-4 hours.
-
-## Running Main Experiments
-
-Main experiments can be run with main.py or in the quickstart notebook. Code loops over each modality and runs the necessary experiments. 
-
-To train the presented 25x25 SOM (approx 2 hours):
-```
-python main.py
-```
-
-To train the presented 5x5 SOM (approx 10 minutes):
-```
-python main.py --fast
-```
-
-The runtime of each modality is detailed belew:
-
-- Olfaction: ~5 seconds total
-- Touch: ~9 minutes total
-- Audio: ~21 minutes total
-- Vision: ~31 minutes total
-- Touch: ~10 minutes total
-
-```
-python main.py
-```
-
-Runs default experiments, with results saved to _output/_. Alternatively, you can use the quickstart.ipynb
-
 
 # Credits
 The main contribution of this repository is standardizing an interface to probe inputs across modalities. This wouldn't be possible without excellent existing repositories for each modality. While the paper contains the full list of citations, there are a handful of repositories that were particularly helpful for making this code, they are:

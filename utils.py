@@ -19,7 +19,17 @@ def load_pickle_output(experiment_name, modality):
    return output
 
 
-def save_som_plot(experiment_name, modality_list, args):
+def save_som_plot(experiment_name, modality_list, args, debug=False):
    from analysis.som_smoothness import gen_and_save_som_charts
    charts = gen_and_save_som_charts(modality_list, args, load_pickle_output)
+   if debug:
+        return charts
    charts.save(f"output/{experiment_name}/som_charts.png")
+
+
+def save_rf_plot(experiment_name, modality_list, debug=False):
+	from analysis.receptive_field import plot_rf
+	charts = plot_rf(experiment_name, modality_list, load_pickle_output)
+	if debug:
+		return charts
+	charts.save(f"output/{experiment_name}/rf_charts.png")

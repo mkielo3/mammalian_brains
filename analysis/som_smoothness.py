@@ -148,7 +148,7 @@ def gen_charts(data):
             title_str = 'Olfaction'
         else:
             index_df = pd.DataFrame([(y, x, x) for x in range(*data['x_range'], 10) for y in range(*data['x_range'], 10)], columns=['x', 'y', 'z'])
-            title_str = 'Audio'
+            title_str = 'Audition'
     elif modality in ['vision', 'touch']:
         xdim = data['x_range'][1] + 1
         ydim = data['y_range'][1] + 1
@@ -185,6 +185,7 @@ def gen_charts(data):
     )
 
     return som_chart, None, source
+
 
 
 def gen_and_save_som_charts(modality_list, args, load_pickle_output):

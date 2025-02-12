@@ -11,7 +11,7 @@ from models.audio.audio import Audio
 from models.touch.touch import Touch
 from models.memory.memory import Memory
 import argparse
-from utils import save_som_plot
+from utils import save_som_plot, save_rf_plot
 
 from config import Args
 
@@ -69,8 +69,11 @@ def main():
                 "args": args,
                 "activations": activation_list}
 
-    save_output_to_pickle(output, args.experiment_name)
+        save_output_to_pickle(output, args.experiment_name)
+    
     save_som_plot(args.experiment_name, modality_list, args)
+    save_rf_plot(args.experiment_name, modality_list, debug=False)
+
 
 if __name__ == "__main__":
     main()
