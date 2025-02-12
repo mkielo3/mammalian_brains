@@ -20,15 +20,16 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--fast', action='store_true', help='Use smaller SOM size (5,5)')
     cmd_args = parser.parse_args()
-
+    
+    fast = cmd_args.fast
     args = Args()
     args.experiment_name = "main_results"
-    
-    if cmd_args.fast:
-        args.experiment_name = "main_results_fast"
-        args.som_size = (5,5)
-
+    args.som_size = (5,5) if fast else (25, 25)
+    args.experiment_name = "main_results_fast" if fast else "main_results"
+    args.fast = fast
+    args.som_epochs = 10000 if fast else 100000
     modality_list = [Olfaction(args), Vision(args), Audio(args), Touch(args), Memory(args)]
+
     for modality in modality_list:
         print ("\n", modality.modality, pd.Timestamp.now())
 

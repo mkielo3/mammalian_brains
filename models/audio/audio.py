@@ -34,6 +34,7 @@ class Audio(ModalityTrainer):
         self.patch_size = args.audio_patch_size
         self.som_size = args.som_size
         self.frames = args.audio_frames
+        self.fast = args.fast
 
     def setup_model(self):
         # audio will always re-setup bc repo doesnt contain weights
@@ -41,7 +42,7 @@ class Audio(ModalityTrainer):
         os.makedirs(save_dir, exist_ok=True)
 
         SPEECH_FILE = download_asset("tutorial-assets/Lab41-SRI-VOiCES-src-sp0307-ch127535-sg0042.wav")
-        waveform, sample_rate = torchaudio.load(SPEECH_FILE)
+        waveform, sample_rate = torchaudio.load(SPEECH_FILE, backend="soundfile")
         waveform = waveform[:,10000:10000+self.frames] # shifted to avoid quiet
         # waveform = waveform[:,:self.frames] # shifted to avoid quiet
 
@@ -77,7 +78,10 @@ class Audio(ModalityTrainer):
         return (coords, static_waveform)
 
     def get_patches(self):
-        return [(x, 0) for x in range(0, self.sample_data.shape[0], self.patch_size)]
+        if self.fast:
+            return [(x, 0) for x in range(0, self.sample_data.shape[0], self.patch_size*10)]
+        else:
+            return [(x, 0) for x in range(0, self.sample_data.shape[0], self.patch_size)]
 
     def calculate_activations(self, x):
         # spec2wav is the slow part, so we dont bother with cuda

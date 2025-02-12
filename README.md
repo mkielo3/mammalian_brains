@@ -9,7 +9,7 @@ This repository contains code for the spatial probes presented in [Dual Computat
 Environment requirements:
 
 ```
-pip install -q numpy pandas scipy scikit-learn matplotlib seaborn pillow ipykernel torch torchvision torchaudio altair datasets numba numbasom==0.0.5 tensorboard pysal vl-convert-python
+pip install -q numpy pandas scipy scikit-learn matplotlib seaborn pillow ipykernel torch torchvision torchaudio altair datasets numba numbasom==0.0.5 tensorboard pysal vl-convert-python soundfile
 apt-get install -y ffmpeg # required for audio model
 ```
 
@@ -19,7 +19,7 @@ Run sample experiments:
 python main.py --fast
 ```
 
-This will produce 5x5 unit SOM maps and receptive fields saved to output/ and runs in about 10 minutes on a M1 Macbook Air on CPU.
+This will produce 5x5 unit SOM maps and receptive fields saved to output/ and runs in about 20 minutes on a M1 Macbook Air on CPU.
 
 Alternatively, you can run the 25x25 unit SOM displayed in the paper, which runs in about 2 hours on the same setup.
 

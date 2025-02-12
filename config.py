@@ -8,6 +8,7 @@ class Args:
     device: str = 'cuda:0' if torch.cuda.is_available() else 'cpu' # barely anything here needs gpu
     setup_models: bool = False # flag to train/download basemodels
     train_som: bool = True # flag to train SOM
+    fast: bool = False # flag to run faster downsampled version
 
     """SOM Parameters"""
     som_epochs: int = 100000 # training epochs, 100K seems to work well generally

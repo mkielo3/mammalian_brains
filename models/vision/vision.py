@@ -64,6 +64,7 @@ class Vision(ModalityTrainer):
         self.patch_size = args.vision_patch_size
         self.reload = args.setup_models
         self.som_size = args.som_size
+        self.fast = args.fast
 
     def setup_model(self):
         if self.reload:
@@ -98,10 +99,11 @@ class Vision(ModalityTrainer):
         return (coords, static)
 
     def get_patches(self):
+        mult = 5 if self.fast else 1
         patch_list = []
         x, y = self.sample_data[0][0].shape
-        for i in range(0, x, self.patch_size):
-            for j in range(0, y, self.patch_size):
+        for i in range(0, x, self.patch_size*mult):
+            for j in range(0, y, self.patch_size*mult):
                 patch_list.append((i, j))
         return patch_list
 
