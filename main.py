@@ -31,10 +31,6 @@ def main():
     modality_list = [Olfaction(args), Vision(args), Audio(args), Touch(args), Memory(args)]
     for modality in modality_list:
         print ("\n", modality.modality, pd.Timestamp.now())
-        if modality.modality == 'audio':
-            args.setup_models = True # always setup, bc weights too large to save in repo
-        else:
-            args.setup_models = False # otherwise setup with setup.py
 
         # 1. Train/Download Model
         modality.setup_model()

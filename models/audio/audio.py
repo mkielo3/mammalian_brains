@@ -32,31 +32,29 @@ class Audio(ModalityTrainer):
         self.modality = 'audio'
         self.project_path = args.project_path
         self.patch_size = args.audio_patch_size
-        self.reload = args.setup_models
         self.som_size = args.som_size
         self.frames = args.audio_frames
 
     def setup_model(self):
-        if self.reload:
-            # Create directory if it doesn't exist
-            save_dir = f"{self.project_path}/models/audio/saved_data"
-            os.makedirs(save_dir, exist_ok=True)
+        # audio will always re-setup bc repo doesnt contain weights
+        save_dir = f"{self.project_path}/models/audio/saved_data"
+        os.makedirs(save_dir, exist_ok=True)
 
-            SPEECH_FILE = download_asset("tutorial-assets/Lab41-SRI-VOiCES-src-sp0307-ch127535-sg0042.wav")
-            waveform, sample_rate = torchaudio.load(SPEECH_FILE)
-            waveform = waveform[:,10000:10000+self.frames] # shifted to avoid quiet
-            # waveform = waveform[:,:self.frames] # shifted to avoid quiet
+        SPEECH_FILE = download_asset("tutorial-assets/Lab41-SRI-VOiCES-src-sp0307-ch127535-sg0042.wav")
+        waveform, sample_rate = torchaudio.load(SPEECH_FILE)
+        waveform = waveform[:,10000:10000+self.frames] # shifted to avoid quiet
+        # waveform = waveform[:,:self.frames] # shifted to avoid quiet
 
-            # Get and save model
-            bundle = torchaudio.pipelines.WAV2VEC2_ASR_BASE_960H
-            model = bundle.get_model()
-            model.eval()
+        # Get and save model
+        bundle = torchaudio.pipelines.WAV2VEC2_ASR_BASE_960H
+        model = bundle.get_model()
+        model.eval()
 
-            # Save files
-            torch.save(model.state_dict(), f"{save_dir}/wav2vec2_model.pt")
-            torch.save(waveform, f"{save_dir}/waveform.pt")
-            torch.save(torch.tensor(sample_rate), f"{save_dir}/sample_rate.pt")
-            return model, waveform, sample_rate
+        # Save files
+        torch.save(model.state_dict(), f"{save_dir}/wav2vec2_model.pt")
+        torch.save(waveform, f"{save_dir}/waveform.pt")
+        torch.save(torch.tensor(sample_rate), f"{save_dir}/sample_rate.pt")
+        return model, waveform, sample_rate
 
     def setup_som(self):
         bundle = torchaudio.pipelines.WAV2VEC2_ASR_BASE_960H

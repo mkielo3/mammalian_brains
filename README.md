@@ -2,7 +2,7 @@
 
 This repository contains code for the spatial probes presented in [Dual Computational Systems in the Development and Evolution of Mammalian Brains](https://www.biorxiv.org/content/10.1101/2024.11.19.624321v1.full.pdf). 
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/USERNAME/REPO/blob/main/NOTEBOOK.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mkielo3/mammalian_brains/blob/main/quickstart.ipynb)
 
 # Getting Started
 
@@ -19,7 +19,7 @@ Run sample experiments:
 python main.py --fast
 ```
 
-This will produce 5x5 unit SOM maps and receptive fields saved to output/ and runs in about 10 minutes on a M1 Macbook Air without GPU.
+This will produce 5x5 unit SOM maps and receptive fields saved to output/ and runs in about 10 minutes on a M1 Macbook Air on CPU.
 
 Alternatively, you can run the 25x25 unit SOM displayed in the paper, which runs in about 2 hours on the same setup.
 
