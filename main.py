@@ -15,6 +15,25 @@ from utils import save_som_plot, save_rf_plot
 
 from config import Args
 
+# Set all seeds
+from numba import njit
+import numpy as np
+
+@njit
+def set_numba_seed(value):
+    np.random.seed(value)
+
+SEED = 123
+torch.manual_seed(SEED)
+torch.cuda.manual_seed_all(SEED)
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
+import numpy as np
+np.random.seed(SEED)
+import random
+random.seed(SEED)
+set_numba_seed(SEED)
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -27,7 +46,7 @@ def main():
     args.som_size = (5,5) if fast else (25, 25)
     args.experiment_name = "main_results_fast" if fast else "main_results"
     args.fast = fast
-    args.som_epochs = 10000 if fast else 100000
+    args.som_epochs = 2000 if fast else 100000
     modality_list = [Olfaction(args), Vision(args), Audio(args), Touch(args), Memory(args)]
 
     for modality in modality_list:
