@@ -209,8 +209,8 @@ def draw_vision_rf(data):
 			source.loc[source['value'] < 0.9, 'value'] = 0.9
 
 		chart = alt.Chart(source).mark_rect(
-			width=5 if som_size == 25 else 7,
-			height=5 if som_size == 25 else 7,
+			width = 6 if som_size == 25 else 7,
+			height = 6 if som_size == 25 else 7,
 			stroke=None,
 			strokeWidth=0
 		).encode(
